@@ -55,32 +55,69 @@ html, body {
     padding: 0;
 }
 
-#p1{
+#p0{
     display: block;
+    position: absolute;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
+    padding: 10px;
+    font-size: x-large;
+    margin-bottom: 0;
+}
+
+#p1{
+    display: none;
+    position: absolute;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
 }
 
 #p2{
     display: none;
+    position: absolute;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
+    padding: 10px;
+    margin: 0;
 }
 
 #p3{
     display: none;
+    position: absolute;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
+    padding: 10px;
+    margin: 0;
 }
 
 #p4{
     display: none;
+    position: absolute;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
+    padding: 10px;
+    margin: 0;
 }
 
 #p5{
     display: none;
+    position: absolute;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
+    padding: 10px;
+    margin: 0;
+}
+
+#layers {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    vertical-align: center;
+    padding: 10px;
+    margin: 0;
+}
+
+br {
+    margin: 0;
 }

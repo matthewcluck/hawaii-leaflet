@@ -1,4 +1,10 @@
 var map = L.map('map').setView([19.70, -155.56], 8);
+let p0 = document.querySelector('#p0');
+let p1 = document.querySelector('#p1');
+let p2 = document.querySelector('#p2');
+let p3 = document.querySelector('#p3');
+let p4 = document.querySelector('#p4');
+let p5 = document.querySelector('#p5');
 
 var lavaZones = {
     "type": "FeatureCollection",
@@ -33,30 +39,45 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 L.geoJSON(lavaZones).addTo(map);
 
+console.log(lavaZones)
+
 var myStyle = {"color":"#ff7800"}
 
 L.geoJSON(lavaZones, {
 
     onEachFeature: function (feature, layer) {
-        layer.bindPopup(`${feature.properties.mzone}`)},
+        layer
+        .on('click', function(){ 
+        p0.style.display = "none";
+        p1.style.display = "none";
+        p2.style.display = "none";
+        p3.style.display = "none";
+        p4.style.display = "none";
+        p5.style.display = "none";
 
+        if (feature.properties.mzone == 1) {
+            p1.style.display = "block";
+        } else if (feature.properties.mzone == 2){
+            p2.style.display = "block";
+        } else if (feature.properties.mzone == 3){
+            p3.style.display = "block";
+        } else if (feature.properties.mzone == 4){
+            p4.style.display = "block";
+        } else {p5.style.display = "block"}
+
+        });
+    },
     style: function(feature) {
 
         switch (feature.properties.mzone) {
-            case "1": return {color: "#ffcc66"};
-            case "2": return {color: "#009933"};
-            case "3": return {color: "#0000FF"};
-            case "4": return {color: "#cc66ff"};
-            case "5": return {color: "#ff0000"};
+            case "1": return {color: "#ffcc66",fillOpacity:.9};
+            case "2": return {color: "#FDDA0D",fillOpacity:.9};
+            case "3": return {color: "#6E260E",fillOpacity:.9};
+            case "4": return {color: "#964B00",fillOpacity:.9};
+            case "5": return {color: "#EE4B2B",fillOpacity:.9};
             
         }
     }
 }).addTo(map);
 
 console.log(lavaZones);
-
-// let lavaArray = lavaZones.features;
-
-// lavaArray.forEach((zone) => {
-//     console.log(zone.properties.hzone);
-// })
