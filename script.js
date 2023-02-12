@@ -5,6 +5,20 @@ let p2 = document.querySelector('#p2');
 let p3 = document.querySelector('#p3');
 let p4 = document.querySelector('#p4');
 let p5 = document.querySelector('#p5');
+let check = document.querySelector('#check');
+let uncheck = document.querySelector('#uncheck');
+
+check.addEventListener('click', () => {
+    check.style.display = "none";
+    uncheck.style.display = "inline-block";
+    map.removeLayer(lavaFeatureLayer);
+});
+
+uncheck.addEventListener('click', () => {
+    check.style.display = "inline-block";
+    uncheck.style.display = "none";
+    lavaFeatureLayer.addTo(map);
+});
 
 var lavaZones = {
     "type": "FeatureCollection",
@@ -37,14 +51,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-L.geoJSON(lavaZones).addTo(map);
-
-console.log(lavaZones)
-
-var myStyle = {"color":"#ff7800"}
-
-L.geoJSON(lavaZones, {
-
+var lavaFeatureLayer = L.geoJSON(lavaZones, {
     onEachFeature: function (feature, layer) {
         layer
         .on('click', function(){ 
@@ -70,14 +77,12 @@ L.geoJSON(lavaZones, {
     style: function(feature) {
 
         switch (feature.properties.mzone) {
-            case "1": return {color: "#ffcc66",fillOpacity:.9};
-            case "2": return {color: "#FDDA0D",fillOpacity:.9};
-            case "3": return {color: "#6E260E",fillOpacity:.9};
-            case "4": return {color: "#964B00",fillOpacity:.9};
-            case "5": return {color: "#EE4B2B",fillOpacity:.9};
+            case "1": return {color: "#ffcc66",fillOpacity:.4,fillColor: "#ffcc66",opacity:.05};
+            case "2": return {color: "#FDDA0D",fillOpacity:.4,fillColor: "#FDDA0D",opacity:.05};
+            case "3": return {color: "#6E260E",fillOpacity:.4,fillColor: "#6E260E",opacity:.05};
+            case "4": return {color: "#964B00",fillOpacity:.4,fillColor: "#964B00",opacity:.05};
+            case "5": return {color: "#EE4B2B",fillOpacity:.4,fillColor: "#EE4B2B",opacity:.05};
             
         }
     }
 }).addTo(map);
-
-console.log(lavaZones);
