@@ -1,4 +1,4 @@
-# leaflet-scratch
+# hawaii-leaflet
 
 After several months of steadily churning through web development fundamentals, I figured it was time to build something related to my field of GIS. I had always had my eye on the JavaScript library leaflet, so I started with that.
 I just wanted to get my feet wet with an open-source mapping library, so I set out with a small goal of having a one page app. I wanted a map with interactive data that also interacted with the DOM. I started a repo and added boilerplate HTML with CSS and JavaScript files. Then I followed the quick start guide from Leaflet and got a map on my HTML page, which was honestly painless. 
