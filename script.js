@@ -8,18 +8,7 @@ let p5 = document.querySelector('#p5');
 let check = document.querySelector('#check');
 let uncheck = document.querySelector('#uncheck');
 
-check.addEventListener('click', () => {
-    check.style.display = "none";
-    uncheck.style.display = "inline-block";
-    map.removeLayer(lavaFeatureLayer);
-});
-
-uncheck.addEventListener('click', () => {
-    check.style.display = "inline-block";
-    uncheck.style.display = "none";
-    lavaFeatureLayer.addTo(map);
-});
-
+//GeoJSON
 var lavaZones = {
     "type": "FeatureCollection",
     "name": "Volcano_Lava_Flow_Hazard_Zones",
@@ -51,6 +40,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+//Creating feature layer and adding to map, layer event listeners, symbolizing
 var lavaFeatureLayer = L.geoJSON(lavaZones, {
     onEachFeature: function (feature, layer) {
         layer
@@ -78,7 +68,7 @@ var lavaFeatureLayer = L.geoJSON(lavaZones, {
 
         switch (feature.properties.mzone) {
             case "1": return {color: "#ffcc66",fillOpacity:.4,fillColor: "#ffcc66",opacity:.05};
-            case "2": return {color: "#FDDA0D",fillOpacity:.4,fillColor: "#FDDA0D",opacity:.05};
+            case "2": return {color: "#FFAC1C",fillOpacity:.4,fillColor: "#FFAC1C",opacity:.05};
             case "3": return {color: "#6E260E",fillOpacity:.4,fillColor: "#6E260E",opacity:.05};
             case "4": return {color: "#964B00",fillOpacity:.4,fillColor: "#964B00",opacity:.05};
             case "5": return {color: "#EE4B2B",fillOpacity:.4,fillColor: "#EE4B2B",opacity:.05};
@@ -86,3 +76,16 @@ var lavaFeatureLayer = L.geoJSON(lavaZones, {
         }
     }
 }).addTo(map);
+
+//Feature layer toggle
+check.addEventListener('click', () => {
+    check.style.display = "none";
+    uncheck.style.display = "inline-block";
+    map.removeLayer(lavaFeatureLayer);
+});
+
+uncheck.addEventListener('click', () => {
+    check.style.display = "inline-block";
+    uncheck.style.display = "none";
+    lavaFeatureLayer.addTo(map);
+});
